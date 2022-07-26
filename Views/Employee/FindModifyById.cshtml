@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h2>Please, Introduce the employee´s mail</h2>
+
+@using (Html.BeginForm("fillFields", "Employee"))
+{
+   <div>
+        <div class="form-group">
+            @Html.Label("Introduce the employee email")
+            @Html.TextBox( "employeEmail")
+        </div>
+        <button type="submit" class="btn btn-primary">Find employee and edit him</button>
+  </div>
+}

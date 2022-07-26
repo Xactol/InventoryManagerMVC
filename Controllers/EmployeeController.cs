@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication3.Models;
 using WebApplication3.ViewModels.Employee;
@@ -7,6 +8,8 @@ namespace WebApplication3.Controllers
 {
     public class EmployeeController : Controller
     {
+
+        
         InventoryManagerContext db = new InventoryManagerContext();
         public IActionResult Index()
         {
@@ -20,6 +23,14 @@ namespace WebApplication3.Controllers
         }
 
         public ActionResult Delete() {
+            return View();
+        }
+
+        public ActionResult Edit() {
+            return View();
+        }
+
+        public ActionResult FindModifyById() {
             return View();
         }
 
@@ -60,6 +71,23 @@ namespace WebApplication3.Controllers
                 Console.WriteLine("An excepcion ocurred "+ ex.Message);
             } 
             return Content("The employee has been deleted correctly " + result);
+        }
+
+        //TODO como consigo asignar una vista que se llame distinta al metodo
+
+        public ActionResult fillFields(String employeEmail) {
+            Employee employee = db.Employees.Find(employeEmail);
+           // AutoMapper.;
+            if(employee != null)
+                return View(employee);
+            return Content("Employee not found");
+        }
+
+        public ActionResult Modify(Employee employe) {
+            db.Entry(employe).State = EntityState.Modified;
+            db.Entry(employe).CurrentValues.SetValues(employe);
+            db.SaveChanges();
+            return Content("Todo correcto");
         }
     }
 }
