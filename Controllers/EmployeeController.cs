@@ -54,7 +54,7 @@ namespace WebApplication3.Controllers
                 Console.WriteLine("The method called New in EmployeeController catch the excepcion : " + ex.Message);
             }
             if (resultOfSave < 1) return Content("The entity hasn´t been saved ");
-            return Content("The employee has been saved correctly  " + employe.ToString());
+            return View(employe);
         }
 
         public ActionResult Remove(Employee employe) {
@@ -71,7 +71,7 @@ namespace WebApplication3.Controllers
             catch (Exception ex) {
                 Console.WriteLine("An excepcion ocurred "+ ex.Message);
             } 
-            return Content("The employee has been deleted correctly " + result);
+            return View(result);
         }
 
         //TODO como consigo asignar una vista que se llame distinta al metodo
