@@ -12,7 +12,11 @@
         <div class="form-group">
             @Html.Label("Introduce the employee email")
             @Html.TextBox( "employeEmail")
+            <select data-val="true" data-val-required="Please, select what you want" id="SelectedOption" name="SelectedOption">
+                <option value="0">Edit employee</option>
+                <option selected="selected" value="1">Find employee</option>
+            </select>
         </div>
-        <button type="submit" class="btn btn-primary">Find employee and edit him</button>
+        <button type="submit" class="btn btn-primary">Find employee</button>
   </div>
 }

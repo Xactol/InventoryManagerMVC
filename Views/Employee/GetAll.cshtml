@@ -1,0 +1,47 @@
+﻿@model WebApplication3.ViewModels.Employee.AllEmployeeViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@Model.list.Count
+
+<table class="default">
+          <tr>
+            <td>
+                <strong>Name </strong>
+            </td>
+            <td>
+                <strong>Surname </strong>
+            </td>
+            <td>
+                <strong>City </strong>
+            </td>
+            <td>
+                <strong>Email </strong>
+            </td>
+        </tr>
+    @foreach(var employee in Model.list)
+    {
+        <tr>
+            <td>
+                @employee.Name  
+            </td>
+            <td>
+                @employee.Surname  
+            </td>
+            <td>
+                @employee.City  
+            </td>
+            <td>
+                @employee.Email  
+            </td>
+
+
+
+        </tr>
+    }
+
+</table>

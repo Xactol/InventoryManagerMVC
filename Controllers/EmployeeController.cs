@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using WebApplication3.Models;
 using WebApplication3.ViewModels.Employee;
 
@@ -75,11 +76,12 @@ namespace WebApplication3.Controllers
 
         //TODO como consigo asignar una vista que se llame distinta al metodo
 
-        public ActionResult fillFields(String employeEmail) {
+        public ActionResult fillFields(String employeEmail, int SelectedOption) {
             Employee employee = db.Employees.Find(employeEmail);
-           // AutoMapper.;
             if(employee != null)
-                return View(employee);
+                if(SelectedOption == 0 )
+                    return View(employee);
+                return View("Show", employee);
             return Content("Employee not found");
         }
 
@@ -87,7 +89,13 @@ namespace WebApplication3.Controllers
             db.Entry(employe).State = EntityState.Modified;
             db.Entry(employe).CurrentValues.SetValues(employe);
             db.SaveChanges();
-            return Content("Todo correcto");
+            return Content("The modifications have been made correctly");
+        }
+
+        public ActionResult GetAll() {
+            AllEmployeeViewModel list = new AllEmployeeViewModel();
+            list.list = db.Employees.ToList();
+            return View(list);
         }
     }
 }
